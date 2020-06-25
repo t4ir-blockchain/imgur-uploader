@@ -5,14 +5,17 @@ import cookies from 'vue-cookies';
 const state = {
   token: cookies.get('imgur_token'),
 };
+
 const getters = {
   isLoggedIn: state => !!state.token,
 };
+
 const mutations = {
   setToken(state, token) {
     state.token = token;
   },
 };
+
 const actions = {
   logout({ commit }) {  
     // state.token 값 null 로 바꾸기.
@@ -29,6 +32,7 @@ const actions = {
     const fullUrl = `${ROOT_URL}/oauth2/authorize?${qs.stringify(queryString)}`
     window.location.href = fullUrl;
   },
+  
   finalizeLogin({ commit }, hashString) {
     const queryObject = qs.parse(hashString.replace('#', ''));
     commit('setToken', queryObject.access_token);
