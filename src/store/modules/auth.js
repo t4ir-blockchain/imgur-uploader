@@ -1,8 +1,9 @@
 import qs from 'qs';
 import router from '@/router';
+import cookies from 'vue-cookies';
 
 const state = {
-  token: null,
+  token: cookies.get('imgur_token'),
 };
 const getters = {
   isLoggedIn: state => !!state.token,
@@ -15,7 +16,8 @@ const mutations = {
 const actions = {
   logout({ commit }) {  
     // state.token 값 null 로 바꾸기.
-    commit('setToken', null)
+    commit('setToken', null);
+    cookies.remove('imgur_token');
   },
   login() {
     const ROOT_URL = 'https://api.imgur.com';
@@ -30,6 +32,7 @@ const actions = {
   finalizeLogin({ commit }, hashString) {
     const queryObject = qs.parse(hashString.replace('#', ''));
     commit('setToken', queryObject.access_token);
+    cookies.set('imgur_token', queryObject.access_token)
     router.push('/');
   }
 };
