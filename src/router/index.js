@@ -14,7 +14,7 @@ const routes = [
     component: AuthHandler,
   },
   {
-    path: '/images',
+    path: '/',
     name: 'ImageList',
     component: ImageList,
   },
