@@ -16,7 +16,7 @@ const mutations = {
 const actions = {
   // 이 함수는 비동기 동작을 포함하고 있음!
   async fetchImages ({ rootState, commit }) {
-    const fullUrl = 'https://api.imgur.com/3/account/mse/images';
+    const fullUrl = 'https://api.imgur.com/3/account/me/images';
     const config = {
       headers: {
         Authorization: `Bearer ${rootState.auth.token}`
