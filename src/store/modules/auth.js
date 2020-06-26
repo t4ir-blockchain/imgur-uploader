@@ -21,7 +21,9 @@ const actions = {
     // state.token 값 null 로 바꾸기.
     commit('setToken', null);
     cookies.remove('imgur_token');
+    location.pathname = '/'
   },
+
   login() {
     const ROOT_URL = 'https://api.imgur.com';
     const CLIENT_ID = process.env.VUE_APP_CLIENT_ID;
